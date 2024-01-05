@@ -1,8 +1,10 @@
-﻿using System;
+﻿using OnTap1;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -315,3 +317,285 @@ namespace OnTap1
         }
     }
 }
+
+
+//public partial class Form1 : Form
+//{
+//    SqlConnection conn = new SqlConnection(@"Data Source=LAPTOP-VJC0N49I;Initial Catalog=QLNhanVien;Integrated Security=True");
+//    SqlCommand cmd;
+
+//    string gioiTinh = "";
+//    string loaiNV = "";
+
+//    public Form1()
+//    {
+//        InitializeComponent();
+
+//    }
+
+//    private void loadData()
+//    {
+//        lv_DSNV.Items.Clear();
+
+//        cmd = new SqlCommand("select * from NhanVien", conn);
+//        SqlDataReader da;
+//        da = cmd.ExecuteReader();
+//        while (da.Read())
+//        {
+//            var item = lv_DSNV.Items.Add(da[0].ToString());
+//            item.SubItems.Add(da[1].ToString());
+//            item.SubItems.Add(da[2].ToString());
+//            item.SubItems.Add(da[3].ToString());
+//            var datef = DateTime.Parse(da[4].ToString());
+//            item.SubItems.Add(datef.ToString("MM/dd/yyyy"));
+//            item.SubItems.Add(da[5].ToString());
+//            item.SubItems.Add(da[6].ToString());
+//        }
+
+//        da.Close();
+//    }
+
+//    private void Form1_Load(object sender, EventArgs e)
+//    {
+//        conn.Open();
+//        loadData();
+//        rad_Nam.Checked = true;
+//        rad_BanHang.Checked = true;
+
+//    }
+
+//    private void rad_BanHang_CheckedChanged(object sender, EventArgs e)
+//    {
+//        lbl_doanhso.Visible = true;
+//        txt_doanhso.Visible = true;
+
+//        lbl_PCNhienLieu.Visible = false;
+//        txt_PCNhienLieu.Visible = false;
+
+//        loaiNV = rad_BanHang.Text;
+//    }
+
+//    private void rad_GiaoNhan_CheckedChanged(object sender, EventArgs e)
+//    {
+//        lbl_doanhso.Visible = false;
+//        txt_doanhso.Visible = false;
+
+//        lbl_PCNhienLieu.Visible = true;
+//        txt_PCNhienLieu.Visible = true;
+
+//        loaiNV = rad_GiaoNhan.Text;
+//    }
+//    private void rad_Nam_CheckedChanged(object sender, EventArgs e)
+//    {
+//        gioiTinh = rad_Nam.Text;
+//    }
+
+//    private void rad_Nu_CheckedChanged(object sender, EventArgs e)
+//    {
+//        gioiTinh = rad_Nu.Text;
+//    }
+
+//    private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+//    {
+//    }
+
+//    void clear()
+//    {
+//        txt_MaNV.Text = "";
+//        txt_HoTen.Text = "";
+//        txt_DienThoai.Text = "";
+//        date_NgayVaoLam.Text = "";
+//        txt_doanhso.Text = "";
+//        txt_PCNhienLieu.Text = "";
+//    }
+
+//    private void btn_Them_Click(object sender, EventArgs e)
+//    {
+//        clear();
+//        txt_MaNV.ReadOnly = false;
+//    }
+
+//    private void btn_Luu_Click(object sender, EventArgs e)
+//    {
+//        cmd = new SqlCommand("insert into NhanVien values('" + txt_MaNV.Text + "','" + txt_HoTen.Text + "', '" + gioiTinh + "', '" + txt_DienThoai.Text + "', '" + date_NgayVaoLam.Value + "', '" + txt_doanhso.Text + "', '" + txt_PCNhienLieu.Text + "')", conn);
+//        cmd.ExecuteNonQuery();
+//        loadData();
+//    }
+
+//    private void btn_Xoa_Click(object sender, EventArgs e)
+//    {
+//        if (MessageBox.Show("Xac Nhan Xoa", "Xoa Du Lieu", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+//        {
+//            conn.Close();
+//            conn.Open();
+//            cmd = new SqlCommand("delete from NhanVien where MaNV = '" + txt_MaNV.Text + "'", conn);
+//            cmd.ExecuteNonQuery();
+//            loadData();
+//        }
+//    }
+
+//    private void btn_Sua_Click(object sender, EventArgs e)
+//    {
+//        conn.Close();
+//        conn.Open();
+//        cmd = new SqlCommand("update NhanVien set HoTen = '" + txt_HoTen.Text + "', GioiTinh = '" + gioiTinh + "', DienThoai = '" + txt_DienThoai.Text + "', NgayVaoLam = '" + date_NgayVaoLam.Value + "', DoanhSo = '" + txt_doanhso.Text + "', PhuCapNhienLieu = '" + txt_PCNhienLieu.Text + "' where MaNV = '" + txt_MaNV.Text + "'", conn);
+//        cmd.ExecuteNonQuery();
+//        loadData();
+//    }
+
+//    private void btn_SapXep_Click(object sender, EventArgs e)
+//    {
+//        lv_DSNV.Sort();
+//    }
+
+//    private void btn_ThongKe_Click(object sender, EventArgs e)
+//    {
+//        StringBuilder thongtin = new StringBuilder();
+//        string soluongnhanvien = lv_DSNV.Items.Count.ToString();
+//        thongtin.AppendLine(soluongnhanvien);
+//        thongtin.AppendLine(soluongnhanvien);
+//        thongtin.AppendLine("e");
+//        MessageBox.Show(thongtin.ToString(), "Thong Ke", MessageBoxButtons.OK, MessageBoxIcon.Information);
+//    }
+
+//    private void lv_DSNV_SelectedIndexChanged(object sender, EventArgs e)
+//    {
+//        if (lv_DSNV.SelectedItems.Count > 0)
+//        {
+//            txt_MaNV.Text = lv_DSNV.SelectedItems[0].Text.ToString();
+//            txt_HoTen.Text = lv_DSNV.SelectedItems[0].SubItems[1].Text.ToString();
+//            if (lv_DSNV.SelectedItems[0].SubItems[2].Text.ToString() == "Nam")
+//            {
+//                rad_Nam.Checked = true;
+//                rad_Nu.Checked = false;
+//            }
+//            else
+//            {
+//                rad_Nam.Checked = false;
+//                rad_Nu.Checked = true;
+//            }
+//            txt_DienThoai.Text = lv_DSNV.SelectedItems[0].SubItems[3].Text.ToString();
+//            date_NgayVaoLam.Text = lv_DSNV.SelectedItems[0].SubItems[4].Text.ToString();
+//            txt_doanhso.Text = lv_DSNV.SelectedItems[0].SubItems[5].Text.ToString();
+//            txt_PCNhienLieu.Text = lv_DSNV.SelectedItems[0].SubItems[6].Text.ToString();
+//        }
+//    }
+
+//    private void btn_Excel_Click(object sender, EventArgs e)
+//    {
+//        Excel.Application excelApp = new Excel.Application();
+//        Excel.Workbook excelWb = excelApp.Workbooks.Add(Excel.XlWBATemplate.xlWBATWorksheet);
+//        Excel.Worksheet excelWs = excelWb.Worksheets[1];
+
+//        Excel.Range excelRange = excelWs.Cells[1, 1];
+//        excelRange.Font.Size = 16;
+//        excelRange.Font.Bold = true;
+//        excelRange.Font.Color = Color.Blue;
+//        excelRange.Value = "DANH MUC SAN PHAM";
+
+//        var catalogs = db.Catalogs.Select(c => new
+//        {
+//            Code
+//        })
+//        }
+//}
+
+
+//public partial class Form1 : Form
+//{
+//    public Form1()
+//    {
+//        InitializeComponent();
+//    }
+
+//    li_Product2Entities db = new li_Product2Entities();
+//    private void btn_xem_Click(object sender, EventArgs e)
+//    {
+//        //dgvSP.DataSource = db.Products.ToList();
+//        dgvSP.DataSource = db.Products.Select(p => p).ToList();
+//        //dgvSP.DataSource = db.Products.Select(p => new {Code = p.ProductCode, Name = p.ProductName, Price = p.ProdutPrice, CatName = p.Catalog.CatalogName }).ToList();
+//        //var productList = from p in db.Products select new { pCode = p.ProductCode, pName = p.ProductName, pPrice = p.ProdutPrice };
+//        //dgvSP.DataSource = productList.ToList();
+//    }
+
+//    private void btn_them_Click(object sender, EventArgs e)
+//    {
+//        Product p = new Product();
+//        p.ProductName = "USB";
+//        p.ProdutPrice = 120000;
+//        p.CatalogCode = 2;
+//        db.Products.Add(p);
+//        db.SaveChanges();
+//        btn_xem_Click(sender, e);
+//    }
+
+//    private void btn_xoa_Click(object sender, EventArgs e)
+//    {
+//        int pCode = Convert.ToInt32(dgvSP.Rows[dgvSP.CurrentRow.Index].Cells["ProductCode"].Value.ToString());
+//        Product selectedProduct = db.Products.Where(p => p.ProductCode == pCode).SingleOrDefault();
+//        db.Products.Remove(selectedProduct);
+//        db.SaveChanges();
+//        btn_xem_Click(sender, e);
+//    }
+
+//    private void btn_sua_Click(object sender, EventArgs e)
+//    {
+//        DataGridViewRow selectedRow = dgvSP.Rows[dgvSP.CurrentRow.Index];
+//        int code = Convert.ToInt32(selectedRow.Cells["ProductCode"].Value.ToString());
+
+//        Product selectedProduct = db.Products.Where(p => p.ProductCode == code).SingleOrDefault();
+
+//        selectedProduct.ProductName = selectedRow.Cells["ProductName"].Value.ToString();
+//        selectedProduct.ProdutPrice = float.Parse(selectedRow.Cells["ProdutPrice"].Value.ToString());
+//        db.SaveChanges();
+//        btn_xem_Click(sender, e);
+//    }
+
+//    private void btn_xuat_Click(object sender, EventArgs e)
+//    {
+
+//    }
+
+//    private void btn_excel_Click(object sender, EventArgs e)
+//    {
+//        Excel.Application excelApp = new Excel.Application();
+//        Excel.Workbook excelWb = excelApp.Workbooks.Add
+//            (Excel.XlWBATemplate.xlWBATWorksheet);
+//        Excel.Worksheet excelWs = excelWb.Worksheets[1];
+
+//        Excel.Range excelRange = excelWs.Cells[1, 1];
+//        excelRange.Font.Size = 16;
+//        excelRange.Font.Bold = true;
+//        excelRange.Font.Color = Color.Blue;
+//        excelRange.Value = "DANH MỤC SẢN PHẨM";
+
+//        //LẤY DANH MỤC
+
+//        var catalogs = db.Catalogs.Select(c => new { Code = c.CatalogCode, Name = c.CatalogName }).ToList();
+//        int row = 2;
+//        foreach (var c in catalogs)
+//        {
+//            excelWs.Range["A" + row].Font.Bold = true;
+//            excelWs.Range["A" + row].Value = c.Name;
+//            row++;
+//            var products = from p in db.Products where p.CatalogCode == c.Code select p;
+//            foreach (var p in products)
+//            {
+//                excelWs.Range["A" + row].Value = p.ProductCode;
+//                excelWs.Range["B" + row].ColumnWidth = 50;
+//                excelWs.Range["B" + row].Value = p.ProductName;
+//                excelWs.Range["C" + row].Value = p.ProdutPrice;
+//                row++;
+//            }
+//        }
+
+//        excelWs.Name = "DanhMucSanPham";
+//        excelWs.Activate();
+
+//        //Lưu file
+//        SaveFileDialog saveFileDialog = new SaveFileDialog();
+//        if (saveFileDialog.ShowDialog() == DialogResult.OK)
+//            excelWb.SaveAs(saveFileDialog.FileName);
+//        excelApp.Quit();
+//    }
+//}
