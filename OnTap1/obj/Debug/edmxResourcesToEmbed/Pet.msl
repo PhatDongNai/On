@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QLPetsModelStoreContainer" CdmEntityContainer="QLPetsEntities">
+    <EntitySetMapping Name="Pets">
+      <EntityTypeMapping TypeName="QLPetsModel.Pet">
+        <MappingFragment StoreEntitySet="Pet">
+          <ScalarProperty Name="MaDon" ColumnName="MaDon" />
+          <ScalarProperty Name="TenThuCung" ColumnName="TenThuCung" />
+          <ScalarProperty Name="ChungLoai" ColumnName="ChungLoai" />
+          <ScalarProperty Name="CanNang" ColumnName="CanNang" />
+          <ScalarProperty Name="NgayNhan" ColumnName="NgayNhan" />
+          <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+          <ScalarProperty Name="LoaiHinhDichVu" ColumnName="LoaiHinhDichVu" />
+          <ScalarProperty Name="PhiDieuTri" ColumnName="PhiDieuTri" />
+          <ScalarProperty Name="SoNgay" ColumnName="SoNgay" />
+          <ScalarProperty Name="DoanhThu" ColumnName="DoanhThu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

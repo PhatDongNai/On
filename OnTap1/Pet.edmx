@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QLPetsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Pet">
+          <Key>
+            <PropertyRef Name="MaDon" />
+          </Key>
+          <Property Name="MaDon" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="TenThuCung" Type="nvarchar" MaxLength="20" />
+          <Property Name="ChungLoai" Type="nvarchar" MaxLength="20" />
+          <Property Name="CanNang" Type="int" />
+          <Property Name="NgayNhan" Type="datetime" />
+          <Property Name="TinhTrang" Type="nvarchar" MaxLength="20" />
+          <Property Name="LoaiHinhDichVu" Type="nvarchar" MaxLength="20" />
+          <Property Name="PhiDieuTri" Type="float" />
+          <Property Name="SoNgay" Type="int" />
+          <Property Name="DoanhThu" Type="float" />
+        </EntityType>
+        <EntityContainer Name="QLPetsModelStoreContainer">
+          <EntitySet Name="Pet" EntityType="Self.Pet" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QLPetsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Pet">
+          <Key>
+            <PropertyRef Name="MaDon" />
+          </Key>
+          <Property Name="MaDon" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenThuCung" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ChungLoai" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CanNang" Type="Int32" />
+          <Property Name="NgayNhan" Type="DateTime" Precision="3" />
+          <Property Name="TinhTrang" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LoaiHinhDichVu" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PhiDieuTri" Type="Double" />
+          <Property Name="SoNgay" Type="Int32" />
+          <Property Name="DoanhThu" Type="Double" />
+        </EntityType>
+        <EntityContainer Name="QLPetsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Pets" EntityType="Self.Pet" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QLPetsModelStoreContainer" CdmEntityContainer="QLPetsEntities">
+          <EntitySetMapping Name="Pets">
+            <EntityTypeMapping TypeName="QLPetsModel.Pet">
+              <MappingFragment StoreEntitySet="Pet">
+                <ScalarProperty Name="MaDon" ColumnName="MaDon" />
+                <ScalarProperty Name="TenThuCung" ColumnName="TenThuCung" />
+                <ScalarProperty Name="ChungLoai" ColumnName="ChungLoai" />
+                <ScalarProperty Name="CanNang" ColumnName="CanNang" />
+                <ScalarProperty Name="NgayNhan" ColumnName="NgayNhan" />
+                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+                <ScalarProperty Name="LoaiHinhDichVu" ColumnName="LoaiHinhDichVu" />
+                <ScalarProperty Name="PhiDieuTri" ColumnName="PhiDieuTri" />
+                <ScalarProperty Name="SoNgay" ColumnName="SoNgay" />
+                <ScalarProperty Name="DoanhThu" ColumnName="DoanhThu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLPetsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Pet">
+    <Key>
+      <PropertyRef Name="MaDon" />
+    </Key>
+    <Property Name="MaDon" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TenThuCung" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ChungLoai" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="CanNang" Type="Int32" />
+    <Property Name="NgayNhan" Type="DateTime" Precision="3" />
+    <Property Name="TinhTrang" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="LoaiHinhDichVu" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PhiDieuTri" Type="Double" />
+    <Property Name="SoNgay" Type="Int32" />
+    <Property Name="DoanhThu" Type="Double" />
+  </EntityType>
+  <EntityContainer Name="QLPetsEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Pets" EntityType="Self.Pet" />
+  </EntityContainer>
+</Schema>
